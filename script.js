@@ -13,6 +13,7 @@ let equalsBtnClicked = false;
 
 function compute(operator) {
   newNumber = bottomDisplay.textContent;
+  if (newNumber === "") return (bottomDisplay.textContent = previousNumber);
 
   switch (operator) {
     case "×":
@@ -77,9 +78,10 @@ const operatorOnClick = function (op) {
     topDisplay.textContent === ""
   )
     return;
-  if (operator) compute(operator);
+  if (operator && bottomDisplay.textContent !== "") compute(operator);
 
-  topDisplay.textContent = bottomDisplay.textContent;
+  if (bottomDisplay.textContent !== "")
+    topDisplay.textContent = bottomDisplay.textContent;
   bottomDisplay.textContent = "";
   previousNumber = topDisplay.textContent;
   operator = op.textContent;
