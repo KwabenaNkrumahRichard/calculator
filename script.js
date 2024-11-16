@@ -61,12 +61,21 @@ const equalsTo = function () {
 const displayNumber = function (e) {
   let num = e.target;
 
-  if (!num.classList.contains("num")) return;
+  if (
+    !num.classList.contains("num") ||
+    (bottomDisplay.textContent === "0" && num.textContent === "0")
+  )
+    return;
   if (
     (bottomDisplay.textContent.includes(".") && num.textContent === ".") ||
     (bottomDisplay.textContent === "" && num.textContent === ".")
   )
     return;
+
+  if (bottomDisplay.textContent === "0") {
+    bottomDisplay.textContent = "";
+    return (bottomDisplay.textContent += num.textContent);
+  }
 
   bottomDisplay.textContent += num.textContent;
 };
